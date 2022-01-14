@@ -206,10 +206,10 @@ function init_threeScene(spec) {
   }
 
   // MT216 : create the frame. We reuse the geometry of the video
-  const calqueMesh = new THREE.Mesh(threeStuffs.videoMesh.geometry,  create_mat2d(new THREE.TextureLoader().load('./images/frame.png'), true))
+  const calqueMesh = new THREE.Mesh(threeStuffs.videoMesh.geometry,  create_mat2d(new THREE.TextureLoader().load('./images/new_year_frame_1.png'), true))
   calqueMesh.renderOrder = 999; // render last
   calqueMesh.frustumCulled = false;
-  threeStuffs.scene.add(calqueMesh);
+  // threeStuffs.scene.add(calqueMesh);
 
   // CREATE THE CAMERA
   THREECAMERA = JeelizThreeHelper.create_camera();
