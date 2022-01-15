@@ -246,6 +246,7 @@ function animateFlyBees(mesh, theta, sign) {
 
 function main() {
     GLASSESOBJ3D = new THREE.Object3D();
+    var vConsole = new window.VConsole();
 
     JeelizResizer.size_canvas({
         canvasId: 'cameraCanvas',
@@ -269,6 +270,8 @@ function init_faceFilter(videoSettings){
         callbackReady: function (errCode, spec) {
             if (errCode) {
                 console.log('Error: the face filter is not ready', errCode);
+                alert('Error: the face filter is not ready')
+                alert(errCode)
                 return;
             }
 
