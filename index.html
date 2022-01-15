@@ -28,27 +28,21 @@
       body {
         background-color: powderblue;
       }
-      .container {
-        position:relative;
-      }
-      canvas#jeeFaceFilterCanvas {
+      .app-container {}
+      canvas#cameraCanvas {
+        z-index: 10;
         position: absolute;
-        z-index: 20;
-        left: 120px;
-        top: 300px;
-      }
-      img#frame {
-        position: absolute;
-        z-index: 999;
+        width: 100%;
+        height: 100%;
         top: 0;
+        left: 0;
       }
     </style>
   </head>
   
   <body onload="main()">
-    <div class="container">
-      <canvas width="600" height="400" style="" id='jeeFaceFilterCanvas'></canvas>
-      <img id="frame" src="images/new_year_frame_1.png" width="800" height="800">
+    <div class="app-container">
+      <canvas width="600" height="600" id='cameraCanvas'></canvas>
     </div>
   </body>
 </html>

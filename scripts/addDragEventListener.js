@@ -107,7 +107,7 @@ function mouseUp() {
 
 function addDragEventListener(scenes, canvasId, remove) {
   _scenes = Array.isArray(scenes) ? scenes : [scenes];
-  const canvas = document.getElementById((typeof(canvasId) === 'undefined') ? 'jeeFaceFilterCanvas' : canvasId);
+  const canvas = document.getElementById((typeof(canvasId) === 'undefined') ? 'cameraCanvas' : canvasId);
 
   _state = _states.idle; // MT217 : initialize your state always (even with a loading value)
 
