@@ -246,6 +246,8 @@ function animateFlyBees(mesh, theta, sign) {
 
 function main() {
     GLASSESOBJ3D = new THREE.Object3D();
+    var vConsole = new window.VConsole();
+
 
     JeelizResizer.size_canvas({
         canvasId: 'cameraCanvas',
