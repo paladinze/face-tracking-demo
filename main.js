@@ -257,35 +257,44 @@ function main() {
 }
 
 function init_faceFilter(videoSettings){
-    JEELIZFACEFILTER.init({
-        canvasId: 'cameraCanvas',
-        NNCPath: './neuralNets/NN_LIGHT_1.json',
-        videoSettings: {
-            ...videoSettings,
-            flipX: true,
-            facingMode: userSettings.cameraMode,
-        },
-        followZRot: true,
-        maxFacesDetected: 1,
-        callbackReady: function (errCode, spec) {
-            if (errCode) {
-                console.log('Error: the face filter is not ready', errCode);
-                alert('Error: the face filter is not ready')
-                alert(errCode)
-                return;
-            }
+    console.log('init_faceFilter check')
+    try {
+        JEELIZFACEFILTER.init({
+            canvasId: 'cameraCanvas',
+            NNCPath: './neuralNets/NN_LIGHT_1.json',
+            videoSettings: {
+                ...videoSettings,
+                flipX: true,
+                facingMode: userSettings.cameraMode,
+            },
+            followZRot: true,
+            maxFacesDetected: 1,
+            callbackReady: function (errCode, spec) {
+                console.log('callbackReady')
+                if (errCode) {
+                    console.log('Error: the face filter is not ready', errCode);
+                    alert('Error: the face filter is not ready')
+                    alert(errCode)
+                    return;
+                }
 
-            console.log('INFO: the face filter IS READY');
-            init_threeScene(spec);
-        },
-        callbackTrack: function (detectState) {
-            JeelizThreeHelper.render(detectState, THREECAMERA);
+                console.log('INFO: the face filter IS READY');
+                init_threeScene(spec);
+            },
+            callbackTrack: function (detectState) {
+                console.log('callbackTrack')
+                JeelizThreeHelper.render(detectState, THREECAMERA);
 
-            if (MIXERS.length > 1) {
-                MIXERS.forEach((m) => {
-                    m.update(0.16);
-                })
+                if (MIXERS.length > 1) {
+                    MIXERS.forEach((m) => {
+                        m.update(0.16);
+                    })
+                }
             }
-        }
-    });
+        })
+    } catch (e) {
+        console.log(e)
+
+    }
+;
 }
