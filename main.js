@@ -1,7 +1,13 @@
 "use strict";
 
+const CameraMode = {
+    front: 'user',
+    back: 'environment'
+}
+
 // Global params
-const SETTINGS = {
+const userSettings = {
+    cameraMode: CameraMode.front,
     numberBees: 8
 };
 
@@ -133,7 +139,7 @@ function init_threeScene(spec) {
             BEEMESH = new THREE.Mesh(geometry, materialBee);
             BEEOBJ3D = new THREE.Object3D();
 
-            for (let i = 1; i < SETTINGS.numberBees; i++) {
+            for (let i = 1; i < userSettings.numberBees; i++) {
                 const sign = i % 2 === 0 ? 1 : -1;
                 const beeInstance = BEEMESH.clone();
 
@@ -202,10 +208,10 @@ function init_threeScene(spec) {
     }
 
     // MT216 : create the frame. We reuse the geometry of the video
-    const calqueMesh = new THREE.Mesh(threeStuffs.videoMesh.geometry, create_mat2d(new THREE.TextureLoader().load('./images/new_year_frame_1.png'), true))
+    const calqueMesh = new THREE.Mesh(threeStuffs.videoMesh.geometry, create_mat2d(new THREE.TextureLoader().load('./images/new_year_frame_2.png'), true))
     calqueMesh.renderOrder = 999; // render last
     calqueMesh.frustumCulled = false;
-    // threeStuffs.scene.add(calqueMesh);
+    threeStuffs.scene.add(calqueMesh);
 
     // CREATE THE CAMERA
     THREECAMERA = JeelizThreeHelper.create_camera();
@@ -258,10 +264,8 @@ function init_faceFilter(videoSettings) {
         canvasId: 'cameraCanvas',
         NNCPath: './neuralNets/',
         videoSettings: {
-            'idealWidth': 1280,
-            'idealHeight': 800,
-            'maxWidth': 1920,
-            'maxHeight': 1920
+            ...videoSettings,
+            facingMode: userSettings.cameraMode,
         },
 
 
