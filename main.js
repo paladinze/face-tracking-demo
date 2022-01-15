@@ -65,6 +65,7 @@ function init_threeScene(spec) {
         './models/glasses/lenses.json',
         (geometry) => {
             const mat = new THREE.MeshBasicMaterial({
+                transparent: true,
                 map: new THREE.TextureLoader().load('./models/glasses/texture_mp.jpg')
             });
 
@@ -143,7 +144,7 @@ function init_threeScene(spec) {
                 const sign = i % 2 === 0 ? 1 : -1;
                 const beeInstance = BEEMESH.clone();
 
-                const xRand = Math.random() * 1.5 - 0.75;
+                const xRand = Math.random() * 2 - 1;
                 const yRand = Math.random() * 2 - 1 + 1;
                 const zRand = Math.random() * 0.5 - 0.25;
 
@@ -174,7 +175,7 @@ function init_threeScene(spec) {
             ACTIONS.forEach((a, index) => {
                 setTimeout(() => {
                     a.play();
-                }, index * 33);
+                }, index*33);
             });
 
             ISANIMATED = true;
@@ -184,7 +185,7 @@ function init_threeScene(spec) {
     );
 
     // CREATE THE VIDEO BACKGROUND:
-    function create_mat2d(threeTexture, isTransparent) { //MT216 : we put the creation of the video material in a func because we will also use it for the frame
+    function create_mat2d(threeTexture, isTransparent){ //MT216 : we put the creation of the video material in a func because we will also use it for the frame
         return new THREE.RawShaderMaterial({
             depthWrite: false,
             depthTest: false,
@@ -201,7 +202,7 @@ function init_threeScene(spec) {
         void main(void){\n\
           gl_FragColor = texture2D(samplerVideo, vUV);\n\
         }",
-            uniforms: {
+            uniforms:{
                 samplerVideo: { value: threeTexture }
             }
         });
@@ -235,10 +236,10 @@ function animateFlyBees(mesh, theta, sign) {
 
         mesh.position.set(
             (x * Math.cos(theta) + z * Math.sin(theta)),
-            (y * Math.cos(theta) + x * Math.sin(theta)) * 0.96 + 0.05,
+            (y * Math.cos(theta) + x * Math.sin(theta))*0.96 + 0.05,
             (z * Math.cos(theta) - x * Math.sin(theta)) //(z * Math.cos(0.03*theta) - x * Math.sin(0.03*theta)*theta)
         );
-        mesh.rotation.set(-(x * Math.cos(theta) + z * Math.sin(theta)) * sign, -(y * Math.cos(theta) + z * Math.sin(theta)) * sign, -(z * Math.cos(theta) - x * Math.sin(theta)) * sign);
+        mesh.rotation.set(-(x * Math.cos(theta) + z * Math.sin(theta))*sign, -(y * Math.cos(theta) + z * Math.sin(theta))*sign, -(z * Math.cos(theta) - x * Math.sin(theta))*sign);
         // mesh.rotation._y = Math.sin(Math.random()*2*Math.PI*100)
     }, 16)
 }
@@ -248,18 +249,13 @@ function main() {
 
     JeelizResizer.size_canvas({
         canvasId: 'cameraCanvas',
-        isFullScreen: true,
-        callback: function (isError, bestVideoSettings) {
-            console.log('bestVideoSettings', bestVideoSettings)
+        callback: function(isError, bestVideoSettings){
             init_faceFilter(bestVideoSettings);
-        },
-        onResize: function () {
-            JeelizThreeHelper.update_camera(THREECAMERA);
         }
     })
 }
 
-function init_faceFilter(videoSettings) {
+function init_faceFilter(videoSettings){
     JEELIZFACEFILTER.init({
         canvasId: 'cameraCanvas',
         NNCPath: './neuralNets/',
@@ -291,4 +287,3 @@ function init_faceFilter(videoSettings) {
         }
     });
 }
-
