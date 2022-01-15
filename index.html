@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-EN" />
+    
+    <title>Demo: face tracking</title>
+    
+    <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+    <script src="./scripts/jeelizFaceFilter.js"></script>
+
+    <!-- INCLUDE THREE.JS -->
+    <script src="./scripts/three.min.js"></script>
+
+    <!-- INCLUDE JEELIZRESIZER -->
+    <script src="./scripts/JeelizResizer.js"></script>
+
+    <!-- INCLUDE JEELIZ THREE.JS HELPER -->
+    <script src="./scripts/JeelizThreeHelper.js"></script>
+
+    <!-- INCLUDE DEMO SCRIPT -->
+    <script src="./main.js"></script>
+
+    <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
+    <script src='./scripts/addDragEventListener.js'></script>
+
+    <style>
+      body {
+        background-color: powderblue;
+      }
+      .app-container {}
+      canvas#cameraCanvas {
+        z-index: 10;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  
+  <body onload="main()">
+    <div class="app-container">
+      <canvas width="600" height="600" id='cameraCanvas'></canvas>
+    </div>
+  </body>
+</html>
+
+

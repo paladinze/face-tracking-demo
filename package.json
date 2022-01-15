@@ -1,0 +1,24 @@
+{
+  "name": "face-tracking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "homepage": "https://paladinze.github.io/face-tracking-demo",
+  "scripts": {
+    "deploy:vercel": "npx vercel",
+    "deploy": "gh-pages -d ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paladinze/face-tracking-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paladinze/face-tracking-demo/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
