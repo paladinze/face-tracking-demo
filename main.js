@@ -258,13 +258,14 @@ function main() {
 function init_faceFilter(videoSettings){
     JEELIZFACEFILTER.init({
         canvasId: 'cameraCanvas',
-        NNCPath: './neuralNets/',
+        NNCPath: './neuralNets/NN_LIGHT_1.json',
         videoSettings: {
             ...videoSettings,
+            flipX: true,
             facingMode: userSettings.cameraMode,
         },
-
-
+        followZRot: true,
+        maxFacesDetected: 1,
         callbackReady: function (errCode, spec) {
             if (errCode) {
                 console.log('Error: the face filter is not ready', errCode);
@@ -274,8 +275,6 @@ function init_faceFilter(videoSettings){
             console.log('INFO: the face filter IS READY');
             init_threeScene(spec);
         },
-
-        // called at each frame
         callbackTrack: function (detectState) {
             JeelizThreeHelper.render(detectState, THREECAMERA);
 
