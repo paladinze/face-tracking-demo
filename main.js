@@ -245,8 +245,25 @@ function animateFlyBees(mesh, theta, sign) {
 }
 
 function main() {
+    new window.VConsole();
     GLASSESOBJ3D = new THREE.Object3D();
-    var vConsole = new window.VConsole();
+
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        console.log('WeixinJSBridgeReady')
+        var video = document.querySelector('video')
+        if (video) {
+            console.log('WeixinJSBridgeReady: ', video)
+            video.play();
+        } else {
+            setTimeout(() => {
+                var video = document.querySelector('video')
+                console.log('setTimeout: ', video)
+                video.play();
+            }, 2000)
+        }
+
+    }, false);
+
 
     JeelizResizer.size_canvas({
         canvasId: 'cameraCanvas',
